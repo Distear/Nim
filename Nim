@@ -47,9 +47,9 @@ def find_heap(heaps, nim_sum):
     if nim_sum == 0:
         return 0, 0
 
-    indivsums = heaps.copy()
+    indivsums = []
     for i in range(len(heaps)):
-        indivsums[i] = nim_sum ^ heaps[i]
+        indivsums.append(nim_sum ^ heaps[i])
 
     remove = 0
     spot = 0
