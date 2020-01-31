@@ -15,20 +15,22 @@
 
 #  Date Created: 1/26/20
 
-#  Date Last Modified:
+#  Date Last Modified: 1/31/2020
 
 #  Input: heaps is a list of integers giving the count in each heap
 #  Output: function returns a single integer which is the nim-sum
 def nim_sum(heaps):
     # this changes the elements in the list into integers
+
     for i in range(len(heaps)):
         into_int = int(heaps[i])
         heaps[i] = into_int
 
+    d = heaps.copy()
     # this lets me compare two heaps at a time and eventually find the nim_sum
     for i in range(len(heaps) - 1):
-        value = heaps[i] ^ heaps[i + 1]
-        heaps[i + 1] = value
+        value = d[i] ^ d[i + 1]
+        d[i + 1] = value
 
     return value
 
@@ -57,6 +59,7 @@ def find_heap(heaps, nim_sum):
         if indivsums[i] < heaps[i]:
             remove = heaps[i] - indivsums[i]
             spot = i
+            break
 
     return remove, spot + 1
 
@@ -89,7 +92,7 @@ def main():
             if y[1] == 0 and y[0] == 0:
                 print("Lose Game")
             else:
-                print("Remove " + str(y[0])+ " counters from Heap " + str(y[1]))
+                print("Remove " + str(y[0]) + " counters from Heap " + str(y[1]))
 
     data.close()
 
